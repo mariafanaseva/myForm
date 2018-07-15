@@ -1,0 +1,102 @@
+.flex{
+    display: flex;
+}
+
+.body{
+    background-color: aliceblue;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.reg_fio{
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    width: 400px;
+}
+
+.reg_fio_block{
+    width: 128px;
+}
+
+.reg_fio_block_string{
+    width: 100%;
+}
+
+.blockAuth{
+    width: 60px;
+}
+
+.blockReg{
+    width: 100px;
+}
+
+.reg_label_country{
+    height: 30px;
+    width: 100%;
+}
+
+.reg_label{
+    width: 400px;
+    margin: 5px 0;
+}
+
+.auth_label{
+    width: 300px;
+    margin: 5px 0;
+}
+
+.label_password{
+    margin-top: 15px;
+}
+
+.label_input{
+    width: 100%;
+    line-height: 22px;
+}
+
+.label_button{
+    margin-top: 10px;
+}
+
+.label_button_input{
+    width:100%;
+    line-height: 22px;
+    background-color: DarkTurquoise;
+    cursor: pointer;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 20px;
+    min-width: 96px;
+    height: 32px;
+    overflow: visible;
+    border-radius: 3px;
+    border: 0;
+    font: 500 14px/32px arial,helvetica,sans-serif;
+    color: #fff;
+    outline: 0;
+    text-align: center;
+}
+
+.checkLabel{
+    display: none;
+    color: red;
+    font-size: 14px;
+}
+
+.styleColorActive{
+    border-bottom: 3px solid DarkTurquoise;
+    color: black;
+    font-weight: bold;
+    border-bottom-color: cyan;
+    text-decoration: none;
+    padding-bottom: 5px;
+}
+
+.styleColorNonActive{
+    color: dimgray;
+    text-decoration: none;
+}

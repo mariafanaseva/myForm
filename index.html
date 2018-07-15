@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="index.css">
+    <meta name="viewport" content="width=device-width">
+    <script src="functions.js"></script>
+    <script language="JavaScript">
+    </script>
+  </head>
+  <body class="body">
+  <form onsubmit="return isValidForm(this, 'auth')" action="">
+    <div class="flex">
+      <div class="blockAuth">
+        <a href="index.html" class="styleColorActive">Вход</a>
+      </div>
+      <div class="blockReg">
+        <a href="registration.html" class="styleColorNonActive">Регистрация</a>
+      </div>
+    </div>
+
+  <div style="padding-top: 15px" class="auth_label">
+    Имя пользователя
+    <!--Username, e-mail or phone number-->
+  </div>
+  <div class="auth_label">
+    <input class="label_input" id="auth_username" maxlength="35" name="auth_username">
+  </div>
+  <div class="auth_label label_password">
+    Пароль
+    <!--Password-->
+  </div>
+    <div class="auth_label">
+      <input class="label_input" type="password" id="auth_pwd" maxlength="35" name="auth_pwd">
+    </div>
+  <div class="auth_label label_button">
+    <input value="Войти" type="submit" class="label_button_input button-pro" id="confirmAuth">
+  </div>
+  </form>
+  </body>
+</html>

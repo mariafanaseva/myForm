@@ -1,0 +1,190 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="index.css">
+      <meta name="viewport" content="width=device-width height=device-height">
+      <script src="functions.js"></script>
+      <script src="jquery-3.3.1.min.js"></script>
+      <script src="jquery.maskedinput.min.js"></script>
+    <script language="JavaScript">
+        window.onload = function() {
+            $(function () {
+                //Получаем элемент, к которому необходимо добавить маску
+                $("#phone").mask("8(999) 999-9999");
+
+                //Устанавливаем мужской пол по умолчанию
+                if (!$("[name=gender]:checked").length) {
+                    $("[name=gender]").val(["Male"]);
+                }
+            });
+
+            $("#reg_username").blur(function (){
+                var username = $(this).val();
+                //проверка на уникальность имени пользователя
+                if(isFreeUsername(username)){
+                    $('#checkUsername').css({
+                        'display':'none'
+                    });
+                }
+                else{
+                    $('#checkUsername').css({
+                        'display':'block'
+                    });
+                }
+            });
+
+            //проверяем e-mail на соответствие маске
+            $("#email").blur(function () {
+                var email = $(this).val(); // Получаем e-mail пользователя
+                var pattern = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+                if (pattern.test(email)) {
+                    // если e-mail корректен
+                    $('#checkEmail').css({
+                        'display':'none'
+                    });
+                }
+                else {
+                    $('#checkEmail').css({
+                        'display':'block'
+                    });
+                }
+            });
+
+            //проверяем пароль на маску
+            $("#pwd").blur(function () {
+                var pwd = $(this).val(); // Получаем пароль пользователя
+
+                if (!pwd || isValidPassword(pwd)) {
+                    $('#checkPwd').css({
+                        'display':'none'
+                    });
+                }
+                else {
+
+                    $('#checkPwd').css({
+                        'display':'block'
+                    });
+                }
+            });
+
+            //проверяем пароль и подтверждение пароля на идентичность
+            $("#confirmPwd").blur(function () {
+                var confirmPwd = $(this).val(),
+                    pwd = document.getElementById("pwd").value;
+
+                if(!confirmPwd || confirmPwd !== pwd){
+                    $('#checkPwdMatch').css({
+                        'display':'block'
+                    });
+                }
+                else{
+                    $('#checkPwdMatch').css({
+                        'display':'none'
+                    });
+                }
+            });
+        }
+    </script>
+  </head>
+  <body class="body">
+  <form onsubmit="return isValidForm(this, 'reg')" action="">
+    <div class="flex">
+        <div class="blockAuth">
+            <a href="index.html" class="styleColorNonActive">Вход</a>
+        </div>
+        <div class="blockReg">
+            <a href="registration.html" class="styleColorActive">Регистрация</a>
+        </div>
+    </div>
+
+    <div style="padding-top: 15px" class="reg_label">
+        Имя пользователя
+    </div>
+    <div class="reg_label">
+        <input class="label_input" id="reg_username" name="reg_username" maxlength="35">
+        <div id="checkUsername" class="checkLabel">Имя пользователя уже занято</div>
+    </div>
+
+    <div style="padding-top: 15px" class="reg_label reg_fio">
+        <div class="reg_fio_block">
+            <div class="reg_fio_block_string">Фамилия</div>
+            <div class="reg_fio_block_string">
+                <input class="label_input" maxlength="16" name="reg_surname">
+            </div>
+        </div>
+        <div class="reg_fio_block">
+            <div class="reg_fio_block_string">Имя</div>
+            <div class="reg_fio_block_string">
+                <input class="label_input" maxlength="16" name="reg_name">
+            </div>
+        </div>
+        <div class="reg_fio_block">
+            <div class="reg_fio_block_string">Отчество</div>
+            <div class="reg_fio_block_string">
+                <input class="label_input" maxlength="16" name="reg_patronimyc">
+            </div>
+        </div>
+    </div>
+
+    <div class="reg_label label_password">
+        Электронная почта
+    </div>
+    <div class="reg_label">
+        <input class="label_input" maxlength="35" id="email" type="text" name="reg_email">
+        <div id="checkEmail" class="checkLabel">Некорректный адрес эл.почты</div>
+    </div>
+
+    <div class="reg_label label_password">
+        Номер телефона
+    </div>
+    <div class="reg_label">
+        <!--<input class="label_input" maxlength="35">-->
+        <input class="label_input" id="phone" type="text" name="reg_phone">
+    </div>
+
+    <div class="reg_label label_password">
+        <input type="radio" value="Male" name="gender">Мужчина
+        <input type="radio" value="Female" name="gender">Женщина
+    </div>
+
+    <div class="reg_label label_password">
+        Страна
+    </div>
+    <div class="reg_label">
+        <select name="select" class="reg_label_country" name="reg_country">
+            <option selected value="s1">Россия</option>
+            <option value="s2">Азербайджан</option>
+            <option value="s3">Аргентина</option>
+            <option value="s4">Армения</option>
+            <option value="s5">Боливия</option>
+            <option value="s6">Бразилия</option>
+            <option value="s7">Индия</option>
+            <option value="s8">Индонезия</option>
+            <option value="s9">Парагвай</option>
+            <option value="s10">Перу</option>
+            <option value="s11">Уругвай</option>
+        </select>
+    </div>
+
+    <div class="reg_label label_password">
+        <input type="checkbox" name="reg_sms"> Вход по смс
+    </div>
+    <div class="reg_label label_password">
+        Пароль
+    </div>
+    <div class="reg_label">
+        <input class="label_input" type="password" maxlength="35" id="pwd" name="reg_pwd">
+        <div id="checkPwd" class="checkLabel">Пароль должен содержать не менее 8 символов, состоять из цифр, строчных и прописных латинских букв</div>
+    </div>
+    <div class="reg_label label_password">
+        Подтвердите пароль
+    </div>
+    <div class="reg_label">
+        <input class="label_input" type="password" maxlength="35" id="confirmPwd" name="reg_confirmPwd">
+        <div id="checkPwdMatch" class="checkLabel">Пароли не совпадают</div>
+    </div>
+    <div class="reg_label label_button">
+        <input value="Зарегистрироваться" type="submit" class="label_button_input button-pro">
+    </div>
+  </form>
+  </body>
+</html>
